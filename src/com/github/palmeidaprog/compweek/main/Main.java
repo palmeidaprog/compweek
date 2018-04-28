@@ -1,3 +1,10 @@
+/*
+ * @author Paulo Roberto Almeida Filho
+ * @email palmeidaprogramming@gmail.com
+ * @site http://www.github.com/palmeidaprog/compweek
+ */
+
+
 package com.github.palmeidaprog.compweek.main;
 
 import javafx.application.Application;
@@ -10,9 +17,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        Parent root = FXMLLoader.load(getClass()
+                .getResource("main.fxml"));
+        primaryStage.setTitle("Gerador de Lista da Semana da Computação VII");
+        primaryStage.setScene(new Scene(root, 770, 380));
         primaryStage.show();
     }
 

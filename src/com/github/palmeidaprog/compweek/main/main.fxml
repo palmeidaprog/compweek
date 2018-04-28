@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="385.0" prefWidth="653.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="600.0" spacing="15.0">
                <children>
-                  <Label text="Matricula/CPF" />
-                  <TextField />
+                  <Label fx:id="matrLbl" text="Matricula/CPF" />
+                  <TextField fx:id="matrText" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
@@ -22,8 +24,8 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="600.0" spacing="15.0">
                <children>
-                  <Label text="Nome" />
-                  <TextField prefHeight="27.0" prefWidth="492.0" />
+                  <Label fx:id="nomeLbl" disable="true" text="Nome" />
+                  <TextField fx:id="nomeText" disable="true" prefHeight="27.0" prefWidth="492.0" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
@@ -31,50 +33,88 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="600.0" spacing="15.0">
                <children>
-                  <Label text="Curso" />
-                  <TextField prefHeight="27.0" prefWidth="492.0" />
+                  <Label fx:id="cursoLbl" disable="true" text="Curso" />
+                  <TextField fx:id="cursoText" disable="true" prefHeight="27.0" prefWidth="492.0" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="21.0" prefWidth="627.0" spacing="10.0">
+               <padding>
+                  <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+               </padding>
+               <children>
+                  <CheckBox fx:id="fraldasCheck" disable="true" mnemonicParsing="false" text="Entregou Fraldas" />
+               </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="12.0" prefWidth="600.0" spacing="15.0">
                <children>
-                  <Label text="Horas:" />
+                  <Label fx:id="horasLbl" text="Horas:" />
                </children>
                <padding>
                   <Insets left="15.0" right="15.0" top="15.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="600.0" spacing="15.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="600.0" spacing="10.0">
                <children>
-                  <Label text="Phyton" />
-                  <TextField prefHeight="27.0" prefWidth="51.0" />
-                  <Label text="React" />
-                  <TextField prefHeight="27.0" prefWidth="51.0" />
-                  <Label text="Competição" />
-                  <TextField prefHeight="27.0" prefWidth="51.0" />
-                  <Label text="Modelagem" />
-                  <TextField prefHeight="27.0" prefWidth="51.0" />
+                  <Label fx:id="machineLbl" disable="true" prefHeight="16.0" prefWidth="122.0" text="Machine Learning" />
+                  <TextField fx:id="machineText" disable="true" prefHeight="27.0" prefWidth="51.0" />
+                  <Label fx:id="reactLbl" disable="true" text="React" />
+                  <TextField fx:id="reactText" disable="true" prefHeight="27.0" prefWidth="51.0" />
+                  <Label fx:id="competLbl" disable="true" text="Competição" />
+                  <TextField fx:id="competText" disable="true" prefHeight="27.0" prefWidth="51.0" />
+                  <Label fx:id="modelLbl" disable="true" text="Modelagem" />
+                  <TextField fx:id="modelText" disable="true" prefHeight="27.0" prefWidth="51.0" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="600.0" spacing="15.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="600.0" spacing="10.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="125.0" text="Machine Learning" />
-                  <TextField prefHeight="27.0" prefWidth="51.0" />
-                  <Label text="Introd. a IA" />
-                  <TextField prefHeight="27.0" prefWidth="51.0" />
-                  <Label text="Competição" />
-                  <TextField prefHeight="27.0" prefWidth="51.0" />
+                  <Label fx:id="pythonLbl" disable="true" prefHeight="17.0" prefWidth="52.0" text="Python" />
+                  <TextField fx:id="pythonText" disable="true" prefHeight="27.0" prefWidth="51.0" />
+                  <Label fx:id="iaLbl" disable="true" text="Introd. a IA" />
+                  <TextField fx:id="iaText" disable="true" prefHeight="27.0" prefWidth="51.0" />
+                  <Label fx:id="unity" disable="true" text="Unity" />
+                  <TextField fx:id="unityText" disable="true" prefHeight="27.0" prefWidth="51.0" />
+                  <Label fx:id="gameLbl" disable="true" text="Game Sound" />
+                  <TextField fx:id="gameText" disable="true" prefHeight="27.0" prefWidth="51.0" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="69.0" prefWidth="650.0" spacing="10.0">
+               <padding>
+                  <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+               </padding>
+               <children>
+                  <Button fx:id="saveBtn" defaultButton="true" mnemonicParsing="false" prefHeight="26.0" prefWidth="184.0" text="Procurar" />
+               </children>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets top="15.0" />
+         </padding>
       </VBox>
    </center>
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="440.0" prefWidth="139.0" spacing="30.0" style="-fx-background-color: #34495E;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="criarBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Criar" />
+            <Button fx:id="editBtn" disable="true" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Procurar" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="40.0" />
+         </padding>
+      </VBox>
+   </left>
 </BorderPane>
