@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.palmeidaprog.compweek.main.Controller">
    <center>
       <VBox prefHeight="385.0" prefWidth="653.0" BorderPane.alignment="CENTER">
          <children>
@@ -106,8 +106,8 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="440.0" prefWidth="139.0" spacing="30.0" style="-fx-background-color: #34495E;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="criarBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Criar" />
-            <Button fx:id="editBtn" disable="true" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Procurar" />
+            <Button fx:id="criarBtn" mnemonicParsing="false" onAction="#criarBtnClick" prefHeight="26.0" prefWidth="82.0" text="Criar" />
+            <Button fx:id="editBtn" disable="true" mnemonicParsing="false" onAction="#editBtnClick" prefHeight="26.0" prefWidth="82.0" text="Procurar" />
          </children>
          <BorderPane.margin>
             <Insets />
