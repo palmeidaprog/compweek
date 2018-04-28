@@ -11,4 +11,17 @@ public class ControllerInscrito {
     public Inscrito get(String matricula) throws NotFoundException {
         return dao.get(matricula);
     }
+
+    public boolean isInscrito(String matricula) {
+        try {
+            dao.get(matricula);
+            return true;
+        } catch(NotFoundException e) {
+            return false;
+        }
+    }
+
+    public void update() {
+        dao.update();
+    }
 }

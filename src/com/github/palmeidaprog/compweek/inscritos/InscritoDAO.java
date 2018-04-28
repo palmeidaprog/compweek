@@ -20,11 +20,13 @@ public class InscritoDAO {
 
     //--Singleton-------------------------------------------------------------
     private InscritoDAO() {
+        inscritos = FXCollections.observableArrayList();
         inscritos.addListener(
                 new ListChangeListener<Inscrito>() {
             @Override
             public void onChanged(Change<? extends Inscrito> c) {
               save();
+                System.out.println("Modificaddo");
             }
         });
 
@@ -46,7 +48,6 @@ public class InscritoDAO {
 
     public void adicionar(Inscrito inscrito) {
         inscritos.add(inscrito);
-        save();
     }
 
     public Inscrito get(String matricula) throws NotFoundException {
@@ -62,11 +63,15 @@ public class InscritoDAO {
         try(ObjectOutputStream objOut = new ObjectOutputStream(new
                 FileOutputStream("inscritos.ser"))) {
             List<Inscrito> lst = new ArrayList<>();
-            Collections.addAll(lst);
+            lst.addAll(inscritos);
             objOut.writeObject(lst);
         } catch(IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void update() {
+        save();
     }
 
     private void read() {

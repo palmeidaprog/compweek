@@ -43,6 +43,8 @@ public class Controller {
         criarBtn.setDisable(false);
         editBtn.setDisable(true);
         enableCenterFields(false);
+        limpaCampos();
+        active = null;
         saveBtn.setText("Procurar");
     }
 
@@ -77,10 +79,19 @@ public class Controller {
             try {
                 active = inscritos.get(matrText.getText());
                 show(active);
+                enableCenterFields(true);
+                saveBtn.setText("Salvar");
             } catch(NotFoundException e) {
                 showDialog("Não encontrado", e.getMessage());
             }
         } else if(saveBtn.getText().equals("Criar")) {
+            if(inscritos.isInscrito(matrText.getText())) {
+                showDialog("Já inscrito", "Matricula já inscrita!"
+                    );
+                matrText.requestFocus();
+                return ;
+            }
+
             Inscrito inscrito = new Inscrito(nomeText.getText(), matrText
                     .getText(), cursoText.getText());
             getData(inscrito);
@@ -90,6 +101,9 @@ public class Controller {
             getData(active);
             limpaCampos();
             active = null;
+            enableCenterFields(false);
+            inscritos.update();
+            saveBtn.setText("Procurar");
         }
     }
 
