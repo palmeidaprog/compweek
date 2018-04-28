@@ -50,7 +50,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="12.0" prefWidth="600.0" spacing="15.0">
                <children>
-                  <Label fx:id="horasLbl" text="Horas:" />
+                  <Label fx:id="horasLbl" disable="true" text="Horas:" />
                </children>
                <padding>
                   <Insets left="15.0" right="15.0" top="15.0" />
@@ -91,7 +91,7 @@
                   <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
                </padding>
                <children>
-                  <Button fx:id="saveBtn" defaultButton="true" mnemonicParsing="false" prefHeight="26.0" prefWidth="184.0" text="Procurar" />
+                  <Button fx:id="saveBtn" defaultButton="true" mnemonicParsing="false" onAction="#saveBtnClick" prefHeight="26.0" prefWidth="184.0" text="Procurar" />
                </children>
             </HBox>
          </children>
@@ -108,6 +108,7 @@
          <children>
             <Button fx:id="criarBtn" mnemonicParsing="false" onAction="#criarBtnClick" prefHeight="26.0" prefWidth="82.0" text="Criar" />
             <Button fx:id="editBtn" disable="true" mnemonicParsing="false" onAction="#editBtnClick" prefHeight="26.0" prefWidth="82.0" text="Procurar" />
+            <Button fx:id="gerarBtn" mnemonicParsing="false" onAction="#criarBtnClick" prefHeight="46.0" prefWidth="82.0" text="Gerar&#10; CSV&#10;" />
          </children>
          <BorderPane.margin>
             <Insets />

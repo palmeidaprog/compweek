@@ -6,11 +6,11 @@
 
 package com.github.palmeidaprog.compweek.main;
 
+import com.github.palmeidaprog.compweek.inscritos.ControllerInscrito;
+import com.github.palmeidaprog.compweek.inscritos.Inscrito;
+import com.github.palmeidaprog.compweek.inscritos.NotFoundException;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 
 public class Controller {
@@ -27,14 +27,16 @@ public class Controller {
     @FXML
     private TextField gameText;
     @FXML
-    private Button saveBtn, criarBtn, editBtn;
+    private Button saveBtn, criarBtn, editBtn, gerarBtn;
+    private Inscrito active;
 
     public void criarBtnClick() {
         criarBtn.setDisable(true);
         editBtn.setDisable(false);
         enableCenterFields(true);
         saveBtn.setText("Criar");
-
+        active = null;
+        limpaCampos();
     }
 
     public void editBtnClick() {
@@ -69,6 +71,79 @@ public class Controller {
         unityText.setDisable(!value);
     }
 
+    public void saveBtnClick() {
+        ControllerInscrito inscritos = new ControllerInscrito();
+        if(saveBtn.getText().equals("Procurar")) {
+            try {
+                active = inscritos.get(matrText.getText());
+                show(active);
+            } catch(NotFoundException e) {
+                showDialog("Não encontrado", e.getMessage());
+            }
+        } else if(saveBtn.getText().equals("Criar")) {
+            Inscrito inscrito = new Inscrito(nomeText.getText(), matrText
+                    .getText(), cursoText.getText());
+            getData(inscrito);
+            inscritos.adicionar(inscrito);
+            limpaCampos();
+        } else {
+            getData(active);
+            limpaCampos();
+            active = null;
+        }
+    }
 
+    private void limpaCampos() {
+        matrText.setText(null);
+        nomeText.setText(null);
+        cursoText.setText(null);
+        fraldasCheck.setSelected(false);
+        machineText.setText("0");
+        reactText.setText("0");
+        competText.setText("0");
+        modelText.setText("0");
+        pythonText.setText("0");
+        iaText.setText("0");
+        unityText.setText("0");
+        gameText.setText("0");
+    }
+
+    private void getData(Inscrito inscrito) {
+        inscrito.setMatricula(matrText.getText());
+        inscrito.setCurso(cursoText.getText());
+        inscrito.setNome(nomeText.getText());
+        inscrito.setFralda(fraldasCheck.isSelected());
+        inscrito.sethMachine(Double.parseDouble(machineText.getText()));
+        inscrito.sethReact(Double.parseDouble(reactText.getText()));
+        inscrito.sethCompeticao(Double.parseDouble(competText.getText()));
+        inscrito.sethModelagem(Double.parseDouble(modelText.getText()));
+        inscrito.sethPython(Double.parseDouble(pythonText.getText()));
+        inscrito.sethIA(Double.parseDouble(iaText.getText()));
+        inscrito.sethUnity(Double.parseDouble(unityText.getText()));
+        inscrito.sethGame(Double.parseDouble(gameText.getText()));
+    }
+
+    private void show(Inscrito inscrito) {
+        matrText.setText(inscrito.getMatricula());
+        nomeText.setText(inscrito.getNome());
+        cursoText.setText(inscrito.getCurso());
+        fraldasCheck.setSelected(inscrito.isFralda());
+        machineText.setText(Double.toString(inscrito.gethMachine()));
+        reactText.setText(Double.toString(inscrito.gethReact()));
+        competText.setText(Double.toString(inscrito.gethCompeticao()));
+        modelText.setText(Double.toString(inscrito.gethModelagem()));
+        pythonText.setText(Double.toString(inscrito.gethPython()));
+        iaText.setText(Double.toString(inscrito.gethIA()));
+        unityText.setText(Double.toString(inscrito.gethUnity()));
+        gameText.setText(Double.toString(inscrito.gethGame()));
+    }
+
+    private void showDialog(String title, String body) {
+        Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+        dialog.setTitle(title);
+        dialog.setHeaderText(null);
+        dialog.setContentText(body);
+        dialog.showAndWait();
+    }
 
 }

@@ -7,6 +7,7 @@
 
 package com.github.palmeidaprog.compweek.main;
 
+import com.github.palmeidaprog.compweek.inscritos.ControllerInscrito;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +23,7 @@ public class Main extends Application {
         primaryStage.setTitle("Gerador de Lista da Semana da Computação VII");
         primaryStage.setScene(new Scene(root, 770, 380));
         primaryStage.show();
+        new ControllerInscrito();
     }
 
 

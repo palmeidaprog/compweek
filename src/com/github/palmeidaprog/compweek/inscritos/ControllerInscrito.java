@@ -7,4 +7,8 @@ public class ControllerInscrito {
     public void adicionar(Inscrito inscrito) {
         dao.adicionar(inscrito);
     }
+
+    public Inscrito get(String matricula) throws NotFoundException {
+        return dao.get(matricula);
+    }
 }
