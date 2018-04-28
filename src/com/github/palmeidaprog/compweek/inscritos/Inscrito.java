@@ -16,6 +16,25 @@ public class Inscrito implements Serializable {
     private double hUnity;
     private double hGame;
 
+    // used for Serializable
+    public Inscrito(String nome, String matricula, String curso, boolean
+            fralda, double hMachine, double hReact, double hCompeticao,
+                    double hModelagem, double hPython, double hIA, double
+                            hUnity, double hGame) {
+        this.nome = nome;
+        this.matricula = matricula;
+        this.curso = curso;
+        this.fralda = fralda;
+        this.hMachine = hMachine;
+        this.hReact = hReact;
+        this.hCompeticao = hCompeticao;
+        this.hModelagem = hModelagem;
+        this.hPython = hPython;
+        this.hIA = hIA;
+        this.hUnity = hUnity;
+        this.hGame = hGame;
+    }
+
     public Inscrito(String nome, String matricula, String curso) {
         this.nome = nome;
         this.matricula = matricula;
@@ -124,4 +143,21 @@ public class Inscrito implements Serializable {
         this.hGame = hGame;
     }
 
+    @Override
+    public String toString() {
+        return "Inscrito{" +
+                "nome='" + nome + '\'' +
+                ", matricula='" + matricula + '\'' +
+                ", curso='" + curso + '\'' +
+                ", fralda=" + fralda +
+                ", hMachine=" + hMachine +
+                ", hReact=" + hReact +
+                ", hCompeticao=" + hCompeticao +
+                ", hModelagem=" + hModelagem +
+                ", hPython=" + hPython +
+                ", hIA=" + hIA +
+                ", hUnity=" + hUnity +
+                ", hGame=" + hGame +
+                '}';
+    }
 }
