@@ -15,15 +15,21 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    private static Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        stage = primaryStage;
         Parent root = FXMLLoader.load(getClass()
                 .getResource("main.fxml"));
         primaryStage.setTitle("Gerador de Lista da Semana da Computação VII");
         primaryStage.setScene(new Scene(root, 770, 380));
         primaryStage.show();
         new ControllerInscrito();
+    }
+
+    public static Stage getStage() {
+        return stage;
     }
 
 

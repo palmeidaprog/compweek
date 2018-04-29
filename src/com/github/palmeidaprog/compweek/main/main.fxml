@@ -108,7 +108,8 @@
          <children>
             <Button fx:id="criarBtn" mnemonicParsing="false" onAction="#criarBtnClick" prefHeight="26.0" prefWidth="82.0" text="Criar" />
             <Button fx:id="editBtn" disable="true" mnemonicParsing="false" onAction="#editBtnClick" prefHeight="26.0" prefWidth="82.0" text="Procurar" />
-            <Button fx:id="gerarBtn" mnemonicParsing="false" onAction="#criarBtnClick" prefHeight="46.0" prefWidth="82.0" text="Gerar&#10; CSV&#10;" />
+            <Button fx:id="gerarBtn" mnemonicParsing="false" onAction="#geraCsv" prefHeight="46.0" prefWidth="82.0" text="Gerar&#10; CSV&#10;" />
+            <Button fx:id="adicCsvBtn" mnemonicParsing="false" onAction="#adicCsvBtnClick" prefHeight="46.0" prefWidth="82.0" text="Adicionar&#10;    CSV&#10;" />
          </children>
          <BorderPane.margin>
             <Insets />

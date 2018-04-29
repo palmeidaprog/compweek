@@ -6,11 +6,13 @@
 
 package com.github.palmeidaprog.compweek.main;
 
-import com.github.palmeidaprog.compweek.inscritos.ControllerInscrito;
-import com.github.palmeidaprog.compweek.inscritos.Inscrito;
-import com.github.palmeidaprog.compweek.inscritos.NotFoundException;
+import com.github.palmeidaprog.compweek.inscritos.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.io.IOException;
 
 
 public class Controller {
@@ -162,15 +164,49 @@ public class Controller {
 
     public void geraCsv() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Abrir vídeo escolhido");
+        fileChooser.setTitle("Salvar Arquivo CSV");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Todos Arquivos", "*.*"),
-                new FileChooser.ExtensionFilter("Arquivos PDF", "*.pdf"));
-        fileChooser.setInitialFileName("ICC.pdf");
-        String selectedFile = fileChooser.showSaveDialog(Main.primaryStage).toString();
+                new FileChooser.ExtensionFilter("Todos Arquivos",
+                        "*.*"),
+                new FileChooser.ExtensionFilter("Arquivos CSV",
+                        "*.csv"));
+        fileChooser.setInitialFileName("inscritos.csv");
+        File selectedFile = fileChooser.showSaveDialog(Main.getStage());
 
-        //File openFile = new File(selectedDir + "/ICC.pdf");
-        File openFile = new File(selectedFile);
+        if(selectedFile == null) {
+            return ;
+        }
+
+        try {
+            GeradorCSV gerador = new GeradorCSV(selectedFile);
+            showDialog("Arquivo Salvo", "Arquivo CSV " +
+                    selectedFile + " salvo com sucesso.");
+        } catch(IOException e) {
+            showDialog("Erro!", e.getMessage());
+        }
+    }
+
+    public void adicCsvBtnClick() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Escolher Arquivo CSV");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Todos Arquivos",
+                        "*.*"),
+                new FileChooser.ExtensionFilter("Arquivos CSV",
+                        "*.csv"));
+        //fileChooser.setInitialFileName("inscritos.csv");
+        File selectedFile = fileChooser.showOpenDialog(Main.getStage());
+        if(selectedFile == null) {
+            return ;
+        }
+        try {
+            LeitorCSV leitor = new LeitorCSV(selectedFile);
+            showDialog("Atualizado", "O arquivo " + selectedFile +
+                " adicionou " + leitor.getAdicionados() + " inscritos e " +
+                "atualizou " + leitor.getAtualizados() + "inscritos.");
+        } catch(IOException e) {
+            showDialog("Arquivo Inválido", e.getMessage());
+        }
     }
 
 }

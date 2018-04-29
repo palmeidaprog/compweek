@@ -13,7 +13,7 @@ public class ControllerInscrito {
     }
 
     public Inscrito get(int index) {
-        dao.get(index);
+        return dao.get(index);
     }
 
     public boolean isInscrito(String matricula) {
