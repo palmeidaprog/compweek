@@ -143,6 +143,11 @@ public class Inscrito implements Serializable {
         this.hGame = hGame;
     }
 
+    public double horasTotal() {
+        return hMachine + hReact + hCompeticao + hModelagem + hPython + hIA +
+                hUnity + hGame;
+    }
+
     @Override
     public String toString() {
         return "Inscrito{" +

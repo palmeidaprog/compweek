@@ -160,4 +160,17 @@ public class Controller {
         dialog.showAndWait();
     }
 
+    public void geraCsv() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Abrir vídeo escolhido");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Todos Arquivos", "*.*"),
+                new FileChooser.ExtensionFilter("Arquivos PDF", "*.pdf"));
+        fileChooser.setInitialFileName("ICC.pdf");
+        String selectedFile = fileChooser.showSaveDialog(Main.primaryStage).toString();
+
+        //File openFile = new File(selectedDir + "/ICC.pdf");
+        File openFile = new File(selectedFile);
+    }
+
 }

@@ -84,6 +84,14 @@ public class InscritoDAO {
         }
     }
 
+    public Inscrito get(int index) {
+        return inscritos.get(index);
+    }
+
+    public int size() {
+        return inscritos.size();
+    }
+
     private void download() {
         try {
             String endereco = "https://www.dropbox.com/s/knb73zxotlwkkv9/" +

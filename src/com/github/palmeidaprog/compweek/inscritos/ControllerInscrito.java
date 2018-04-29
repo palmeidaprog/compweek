@@ -12,6 +12,10 @@ public class ControllerInscrito {
         return dao.get(matricula);
     }
 
+    public Inscrito get(int index) {
+        dao.get(index);
+    }
+
     public boolean isInscrito(String matricula) {
         try {
             dao.get(matricula);
@@ -19,6 +23,10 @@ public class ControllerInscrito {
         } catch(NotFoundException e) {
             return false;
         }
+    }
+
+    public int size() {
+        return dao.size();
     }
 
     public void update() {
