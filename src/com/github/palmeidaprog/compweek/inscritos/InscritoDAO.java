@@ -15,6 +15,7 @@ import java.util.EventListener;
 import java.util.List;
 
 public class InscritoDAO {
+    private final String arquivo = "inscritos.ser";
     ObservableList<Inscrito> inscritos = FXCollections.observableArrayList();
 
 
@@ -25,14 +26,18 @@ public class InscritoDAO {
                 new ListChangeListener<Inscrito>() {
             @Override
             public void onChanged(Change<? extends Inscrito> c) {
-              save();
-                System.out.println("Modificaddo");
+                save();
             }
         });
 
-        File f = new File("inscritos.ser");
+        File f = new File(arquivo);
         if(!f.exists()) {
-            download();
+            //download();
+            try {
+                f.createNewFile();
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
         } else if(f.length() > 0) {
             read();
         }
@@ -61,7 +66,7 @@ public class InscritoDAO {
 
     private void save() {
         try(ObjectOutputStream objOut = new ObjectOutputStream(new
-                FileOutputStream("inscritos.ser"))) {
+                FileOutputStream(arquivo))) {
             List<Inscrito> lst = new ArrayList<>();
             lst.addAll(inscritos);
             objOut.writeObject(lst);
@@ -76,7 +81,7 @@ public class InscritoDAO {
 
     private void read() {
         try(ObjectInputStream objIn = new ObjectInputStream(new
-                FileInputStream("inscritos.ser"))) {
+                FileInputStream(arquivo))) {
             inscritos = FXCollections.observableList((List<Inscrito>)
                     objIn.readObject());
         } catch(Exception e) {
@@ -98,8 +103,7 @@ public class InscritoDAO {
                     "inscritos.ser?dl=1";
             URL url = new URL(endereco);
             ReadableByteChannel rbc = Channels.newChannel(url.openStream());
-            FileOutputStream fos = new FileOutputStream
-                    ("inscritos.ser");
+            FileOutputStream fos = new FileOutputStream(arquivo);
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
         } catch (MalformedURLException e) {
             e.printStackTrace();
