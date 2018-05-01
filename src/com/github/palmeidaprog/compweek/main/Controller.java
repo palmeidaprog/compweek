@@ -51,12 +51,10 @@ public class Controller {
     }
 
     private void enableCenterFields(boolean value) {
-        nomeText.setDisable(!value);
         cursoText.setDisable(!value);
         machineText.setDisable(!value);
         reactText.setDisable(!value);
         gameText.setDisable(!value);
-        nomeLbl.setDisable(!value);
         cursoLbl.setDisable(!value);
         horasLbl.setDisable(!value);
         machineLbl.setDisable(!value);
@@ -75,19 +73,40 @@ public class Controller {
         unityText.setDisable(!value);
     }
 
+    private void trimData(TextField tf) {
+        if(tf.getText() != null) {
+            tf.setText(tf.getText().trim());
+        }
+    }
+
     public void saveBtnClick() {
         ControllerInscrito inscritos = new ControllerInscrito();
+
+        trimData(matrText);
+        trimData(nomeText);
+
         if(saveBtn.getText().equals("Procurar")) {
-            try {
-                active = inscritos.get(matrText.getText());
-                show(active);
-                enableCenterFields(true);
-                saveBtn.setText("Salvar");
-            } catch(NotFoundException e) {
-                showDialog("Não encontrado", e.getMessage());
+            if(matrText.getText().isEmpty() || (!matrText.getText().isEmpty()
+                    && !procuraMatricula(inscritos, matrText.getText()))) {
+                if(!nomeText.getText().isEmpty() && !procuraNome(inscritos,
+                        nomeText.getText())) {
+                    showDialog("Não Encontrado", "Inscrito não " +
+                            "encontrado.");
+                    return ;
+                }
             }
+
+            if(active == null) {
+                showDialog("Não Encontrado", "Inscrito não " +
+                        "encontrado.");
+                return ;
+            }
+            show(active);
+            enableCenterFields(true);
+            saveBtn.setText("Salvar");
+            editBtn.setDisable(false);
         } else if(saveBtn.getText().equals("Criar")) {
-            if(inscritos.isInscrito(matrText.getText())) {
+            if(inscritos.isInscrito(matrText.getText().trim())) {
                 showDialog("Já inscrito", "Matricula já inscrita!"
                     );
                 matrText.requestFocus();
@@ -106,6 +125,27 @@ public class Controller {
             enableCenterFields(false);
             inscritos.update();
             saveBtn.setText("Procurar");
+            editBtn.setDisable(true);
+        }
+    }
+
+    private boolean procuraNome(ControllerInscrito inscritos, String nome) {
+        try {
+            active = inscritos.getNome(nomeText.getText().trim());
+            return true;
+        } catch(NotFoundException e) {
+            active = null;
+            return false;
+        }
+    }
+
+    private boolean procuraMatricula(ControllerInscrito inscritos, String matricula) {
+        try {
+            active = inscritos.get(matrText.getText().trim());
+            return true;
+        } catch(NotFoundException e) {
+            active = null;
+            return false;
         }
     }
 
@@ -190,10 +230,10 @@ public class Controller {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Escolher Arquivo CSV");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Todos Arquivos",
-                        "*.*"),
                 new FileChooser.ExtensionFilter("Arquivos CSV",
-                        "*.csv"));
+                        "*.csv"),
+                new FileChooser.ExtensionFilter("Todos Arquivos",
+                        "*.*"));
         //fileChooser.setInitialFileName("inscritos.csv");
         File selectedFile = fileChooser.showOpenDialog(Main.getStage());
         if(selectedFile == null) {

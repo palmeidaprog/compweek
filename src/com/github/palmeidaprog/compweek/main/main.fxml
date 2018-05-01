@@ -24,8 +24,8 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="600.0" spacing="15.0">
                <children>
-                  <Label fx:id="nomeLbl" disable="true" text="Nome" />
-                  <TextField fx:id="nomeText" disable="true" prefHeight="27.0" prefWidth="492.0" />
+                  <Label fx:id="nomeLbl" text="Nome" />
+                  <TextField fx:id="nomeText" prefHeight="27.0" prefWidth="492.0" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />

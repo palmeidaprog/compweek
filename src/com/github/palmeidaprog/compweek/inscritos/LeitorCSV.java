@@ -19,7 +19,7 @@ public class LeitorCSV {
     private void ler() throws IOException {
         try(BufferedReader in = new BufferedReader(new FileReader(input))) {
             String s = in.readLine();
-            if(!s.startsWith("Matrícula")) {
+            if(!s.startsWith("Matricula") && !s.startsWith("Matrícula")) {
                 throw new IOException("Arquivo escolhido não é valido!");
             }
 

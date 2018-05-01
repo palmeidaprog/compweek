@@ -1,5 +1,7 @@
 package com.github.palmeidaprog.compweek.inscritos;
 
+import org.omg.CosNaming.NamingContextPackage.NotFound;
+
 public class ControllerInscrito {
     public InscritoDAO dao = InscritoDAO.getInstance();
 
@@ -10,6 +12,10 @@ public class ControllerInscrito {
 
     public Inscrito get(String matricula) throws NotFoundException {
         return dao.get(matricula);
+    }
+
+    public Inscrito getNome(String nome) throws NotFoundException {
+        return dao.getNome(nome);
     }
 
     public Inscrito get(int index) {

@@ -13,7 +13,7 @@ public class GeradorCSV {
     private void criar() throws IOException {
         try(PrintWriter out = new PrintWriter(new FileWriter(output))) {
             ControllerInscrito inscritos = new ControllerInscrito();
-            out.println("Matrícula;Nome;Curso;Fralda;Horas Total;" +
+            out.println("Matricula;Nome;Curso;Fralda;Horas Total;" +
                     "Machine Learning;React;Competição;Modelagem;Python;" +
                     "Introd. IA;Unity;Game Sound;");
             for(int i = 0; i < inscritos.size(); i++) {

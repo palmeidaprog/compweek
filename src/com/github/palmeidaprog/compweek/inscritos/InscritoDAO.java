@@ -1,5 +1,6 @@
 package com.github.palmeidaprog.compweek.inscritos;
 
+import com.sun.tools.corba.se.idl.constExpr.Not;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -91,6 +92,32 @@ public class InscritoDAO {
 
     public Inscrito get(int index) {
         return inscritos.get(index);
+    }
+
+    public Inscrito getNome(String nome) throws NotFoundException {
+        for(Inscrito i : inscritos) {
+            String n = new String(nome);
+
+            boolean stop = false;
+            while(n.contains(" ") && !stop) {
+                String palavra = n.substring(0, n.indexOf(" "));
+                if(!i.getNome().toLowerCase().contains(palavra
+                        .toLowerCase())) {
+                    stop = true;
+                }
+                n = n.substring(n.indexOf(" ") + 1);
+            }
+
+            if(stop) {
+                continue;
+            }
+
+            if(i.getNome().toLowerCase().contains(n.toLowerCase())) {
+                    return i;
+            }
+        }
+        throw new NotFoundException("Não existe usuario com essa combinação "
+                + "de nomes.");
     }
 
     public int size() {
