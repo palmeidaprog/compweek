@@ -1,6 +1,5 @@
 package com.github.palmeidaprog.compweek.inscritos;
 
-import com.sun.tools.corba.se.idl.constExpr.Not;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
